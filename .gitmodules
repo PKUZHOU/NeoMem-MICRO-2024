@@ -1,0 +1,7 @@
+[submodule "NeoProf_FPGA"]
+	path = NeoProf_FPGA
+	url = git@github.com:PKUZHOU/NeoProf_FPGA.git
+[submodule "linux"]
+	path = linux
+	url = git@github.com:PKUZHOU/linux.git
+	branch = experiments_dev
