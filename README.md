@@ -5,16 +5,21 @@ The Artifact of  NeoMem: Hardware/Software Co-Design for CXL-Native Memory Tieri
 ## Overview
 
 [1. Introduction](#1-introduction)
-[2. Hardware Requirements](#2-system_setup)
+
+[2. Hardware Requirements](#2-hardware-and-software-requirements)
+
 [3. Installation](#3-installation)
-[4. Run Experiments](#4-experiments)
-[5. Check Results](#5-checkresults)
+
+[4. Run Experiments](#4-run-experiments)
+
+[5. Check Results](#5-check-results)
 
 ## 1. Introduction
 
 NeoMem project consists of three submodules: [NeoMem_FPGA](), [linux]() and [experiments](). `NeoMem_FPGA` contains the FPGA code of NeoProf. The `linux` folder contains NeoMem's host-side driver, daemon and user-space interface implementation. You can find some  click-to-run scripts in the `experiments` folder, which helps you reproduce the main results of NeoMem paper.
 
 ## 2. Hardware and Software Requirements
+<a name="2-system_setup"></a>
 
 Here are the hardware and software setups used in NeoMem:
 
@@ -26,11 +31,23 @@ Here are the hardware and software setups used in NeoMem:
 
 ## 3. Installation
 
+To download this repo, run:
 ```sh
 git clone git@github.com:PKUZHOU/NeoMem-MICRO-2024.git
 cd NeoMem-MICRO-2024
 git submodule update --init
 ```
+
+To install the provided linux kernel, run:
+```sh
+cd linux
+make -j
+make modules_install
+make install
+```
+
+Note that we hardcode some address in our driver (in _linux/drivers/neoprof/neoprof.c_), you may need to change it. 
+
 
 ## 4. Run Experiments
 
@@ -42,7 +59,6 @@ python run_all.py
 ```
 
 The experiment result will be stored in *output/experiment_output*
-
 
 To get the result shown in Fig.16, run
 
