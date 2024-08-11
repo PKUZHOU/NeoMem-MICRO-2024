@@ -5,3 +5,6 @@
 	path = linux
 	url = git@github.com:PKUZHOU/linux.git
 	branch = experiments_dev
+[submodule "NeoMem_benchmarking"]
+	path = NeoMem_benchmarking
+	url = git@github.com:memory-of-star/NeoMem_benchmarking.git
