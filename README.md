@@ -16,7 +16,7 @@ The Artifact of  NeoMem: Hardware/Software Co-Design for CXL-Native Memory Tieri
 
 ## 1. Introduction
 
-NeoMem project consists of three submodules: [NeoMem_FPGA](), [linux]() and [experiments](). `NeoMem_FPGA` contains the FPGA code of NeoProf. The `linux` folder contains NeoMem's host-side driver, daemon and user-space interface implementation. You can find some  click-to-run scripts in the `experiments` folder, which helps you reproduce the main results of NeoMem paper.
+NeoMem project consists of three submodules: [NeoMem_FPGA](), [linux]() and [experiments](). `NeoMem_FPGA` contains the FPGA code of NeoProf. The `linux` folder contains NeoMem's host-side driver, daemon and user-space interface implementation. You can find some click-to-run scripts in the `NeoMem_benchmarking` folder, which helps you reproduce the main results of NeoMem paper.
 
 ## 2. Hardware and Software Requirements
 <a name="2-system_setup"></a>
@@ -46,7 +46,22 @@ make modules_install
 make install
 ```
 
-Note that we hardcode some address in our driver (in _linux/drivers/neoprof/neoprof.c_), you may need to change it. 
+Note that we hardcode some address in our driver (in _linux/drivers/neoprof/neoprof.c_), you may need to change it on your platform. 
+
+*NEOPROFILER_MMIO_BASE* defines the start address of the BAR space of the CXL-enabled FPGA device. To find the address on your platform, run:
+```sh
+lspci -vvv
+```
+You can find the address as follows.
+![PCIE_BAR_space](./figures/PCIE_BAR_space.jpg "NEOPROFILER_MMIO_BASE")
+
+
+*CXL_MEM_BASE* defines the start memory address of the CXL-enabled FPGA device. To find the address on your platform, run:
+```sh
+cat /proc/iomem
+```
+The CXL memory device is detected as a DAX device. You can find the address as follows.
+![CXL_memory_region](./figures/CXL_memory_region.jpg "CXL_MEM_BASE")
 
 
 ## 4. Run Experiments
